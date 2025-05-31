@@ -100,30 +100,13 @@ in {
     {
       assertions = [
           {
-            assertion = cfg.configDir != null && (cfg.scssConfig != null || cfg.yuckConfig != null);
+            assertion = cfg.configDir == null || (cfg.scssConfig == null && cfg.yuckConfig == null);
             message = "You cannot specify `programs.eww.yuckConfig` and `programs.eww.scssConfig` if you have specified `programs.eww.configDir`";
           }
         ];
 
       home.packages = [ cfg.package ];
 
-      programs.bash.initExtra = mkIf cfg.enableBashIntegration ''
-        if [[ $TERM != "dumb" ]]; then
-          eval "$(${ewwCmd} shell-completions --shell bash)"
-        fi
-      '';
-
-      programs.zsh.initExtra = mkIf cfg.enableZshIntegration ''
-        if [[ $TERM != "dumb" ]]; then
-          eval "$(${ewwCmd} shell-completions --shell zsh)"
-        fi
-      '';
-
-      programs.fish.interactiveShellInit = mkIf cfg.enableFishIntegration ''
-        if test "$TERM" != "dumb"
-          eval "$(${ewwCmd} shell-completions --shell fish)"
-        end
-      '';
     }
 
     (mkIf (cfg.configDir != null) { xdg.configFile."eww".source = cfg.configDir; })
