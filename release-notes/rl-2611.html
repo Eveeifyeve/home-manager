@@ -15,8 +15,8 @@
         <link rel="icon" href="../favicon-de23e50b.svg">
         <link rel="shortcut icon" href="../favicon-8114d1fc.png">
         <link rel="stylesheet" href="../css/variables-8adf115d.css">
-        <link rel="stylesheet" href="../css/general-2459343d.css">
-        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/general-e96d0476.css">
+        <link rel="stylesheet" href="../css/chrome-d279d366.css">
         <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
@@ -35,10 +35,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-d677dc02.js";
+            window.path_to_searchindex_js = "../searchindex-8759301f.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-2bd0036d.js"></script>
+        <script src="../toc-19723085.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -185,18 +185,52 @@ section is therefore not final.</p>
 <h2 id="highlights"><a class="header" href="#highlights">Highlights</a></h2>
 <p>This release has the following notable changes:</p>
 <ul>
-<li>The <a href="../options/home-manager/programs/uv.html#opt-programs.uv.enable">programs.uv.enable</a> module can now install uv-managed Python
+<li>
+<p>The <a href="../options/home-manager/programs/uv.html#opt-programs.uv.enable">programs.uv.enable</a> module can now install uv-managed Python
 versions and tools through the new <code>programs.uv.python.versions</code>,
 <code>programs.uv.python.default</code>, and <code>programs.uv.tool.packages</code> options. Unpinned
 entries track the latest release on each activation while pinned ones stay put,
 and <code>programs.uv.python.prune</code> / <code>programs.uv.tool.prune</code> make the managed set
-fully declarative by removing versions and tools that are no longer listed.</li>
+fully declarative by removing versions and tools that are no longer listed.</p>
+</li>
+<li>
+<p>On Darwin, Home Manager launchd agents now support
+<a href="../options/home-manager/launchd.html#opt-launchd.agents._name_.domain">launchd.agents.<em>name</em>.domain</a> to choose either the user’s GUI or
+background launchd domain. Agents use the GUI domain by default. Set the
+domain to <code>user</code> for agents that should run without an active graphical login
+session.</p>
+</li>
 </ul>
 <p><a id="sec-release-26.11-state-version-changes"></a></p>
 <h2 id="state-version-changes"><a class="header" href="#state-version-changes">State Version Changes</a></h2>
 <p>The state version in this release includes the changes below. These
 changes are only active if the <code>home.stateVersion</code> option is set to
 “26.11” or later.</p>
+<ul>
+<li>
+<p>The KDL options under <code>programs.zellij</code> will now correctly escape backslashes
+in string values. For example, the Nix string <code>"\\"</code> will now correctly
+generate the KDL string <code>"\\"</code>. Previously, this would have generated <code>"\"</code>,
+which is invalid KDL. The following options are affected:</p>
+<ul>
+<li><code>programs.zellij.settings</code></li>
+<li><code>programs.zellij.themes</code></li>
+<li><code>programs.zellij.layouts</code></li>
+</ul>
+</li>
+<li>
+<p>The KDL options under <code>programs.zellij</code> will now escape tabs in string
+values. For example, the Nix string <code>"\t"</code> (corresponding to a single tab)
+will now generate the KDL string <code>"\t"</code>. Previously, this would have generated
+<code>"&lt;tab&gt;"</code> (where <code>&lt;tab&gt;</code> denotes a literal tab character). The following
+options are affected:</p>
+<ul>
+<li><code>programs.zellij.settings</code></li>
+<li><code>programs.zellij.themes</code></li>
+<li><code>programs.zellij.layouts</code></li>
+</ul>
+</li>
+</ul>
 
                     </main>
 
@@ -242,11 +276,11 @@ changes are only active if the <code>home.stateVersion</code> option is set to
 
         <script src="../elasticlunr-ef4e11c1.min.js"></script>
         <script src="../mark-09e88c2c.min.js"></script>
-        <script src="../searcher-c2a407aa.js"></script>
+        <script src="../searcher-09f2665d.js"></script>
 
         <script src="../clipboard-1626706a.min.js"></script>
         <script src="../highlight-abc7f01d.js"></script>
-        <script src="../book-a0b12cfe.js"></script>
+        <script src="../book-609e4cb8.js"></script>
 
         <!-- Custom JS scripts -->
 

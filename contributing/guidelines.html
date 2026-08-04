@@ -15,8 +15,8 @@
         <link rel="icon" href="../favicon-de23e50b.svg">
         <link rel="shortcut icon" href="../favicon-8114d1fc.png">
         <link rel="stylesheet" href="../css/variables-8adf115d.css">
-        <link rel="stylesheet" href="../css/general-2459343d.css">
-        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/general-e96d0476.css">
+        <link rel="stylesheet" href="../css/chrome-d279d366.css">
         <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
@@ -35,10 +35,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-d677dc02.js";
+            window.path_to_searchindex_js = "../searchindex-8759301f.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-2bd0036d.js"></script>
+        <script src="../toc-19723085.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -256,7 +256,7 @@ configuration location with an environment variable, for example
 <h2 id="add-relevant-tests"><a class="header" href="#add-relevant-tests">Add relevant tests</a></h2>
 <p>If at all possible, make sure to add new tests and expand existing tests
 so that your change will keep working in the future. See
-<a href="#sec-tests">Tests</a> for more information about the Home Manager test
+<a href="tests.html#sec-tests">Tests</a> for more information about the Home Manager test
 suite.</p>
 <p>All contributed code <em>must</em> pass the test suite.</p>
 <p><a id="sec-guidelines-module-maintainer"></a></p>
@@ -275,7 +275,7 @@ $ xdg-open ./result/share/doc/home-manager/index.html
 <p>When you have made changes to a module, it is a good idea to check that
 the man page version of the module options looks good:</p>
 <pre><code class="language-shell">$ nix-build -A docs.manPages
-$ man ./result/share/man/man5/home-configuration.nix.5.gz
+$ man ./result/share/man/man5/home-configuration.nix.5
 </code></pre>
 <p><a id="sec-module-auto-importing"></a></p>
 <h2 id="module-auto-importing"><a class="header" href="#module-auto-importing">Module Auto-importing</a></h2>
@@ -330,13 +330,13 @@ consistent commit message format as described in
 <h2 id="format-your-news-entries"><a class="header" href="#format-your-news-entries">Format your news entries</a></h2>
 <p>If your contribution includes a change that should be communicated to
 users of Home Manager then you can add a news entry. The entry must be
-formatted as described in <a href="#sec-news">News</a>.</p>
+formatted as described in <a href="news.html#sec-news">News</a>.</p>
 <p>When new modules are added a news entry should be included.</p>
 <p>News entries and release notes serve different purposes. Release notes
 should be updated separately when a change affects users migrating
 between stable releases, such as state version default changes, required
 migration steps, or broad behavior changes. See
-<a href="#sec-contributing-release-notes">Release Notes</a> and <a href="#sec-news">News</a>
+<a href="release-notes.html#sec-contributing-release-notes">Release Notes</a> and <a href="news.html#sec-news">News</a>
 for more details.</p>
 <p><a id="sec-guidelines-conditional-modules"></a></p>
 <h2 id="use-conditional-modules-and-news"><a class="header" href="#use-conditional-modules-and-news">Use conditional modules and news</a></h2>
@@ -344,11 +344,15 @@ for more details.</p>
 of the supported platforms. The most common example of platform specific
 modules are those that define systemd user services, which only works on
 Linux systems.</p>
-<p>If you add a module that is platform specific then make sure to include
-a condition in the <code>loadModule</code> function call. This will make the module
-accessible only on systems where the condition evaluates to <code>true</code>.</p>
+<p>If you add a module that is platform specific then make sure the module
+guards platform-specific configuration with an appropriate condition, for
+example <code>pkgs.stdenv.hostPlatform.isLinux</code> or
+<code>pkgs.stdenv.hostPlatform.isDarwin</code>. Modules in <code>modules/programs/</code> and
+<code>modules/services/</code> are auto-imported, so the platform condition should live
+in the module behavior and in any platform-specific tests rather than in a
+separate module discovery call.</p>
 <p>Similarly, if you are adding a news entry then it should be shown only
-to users that may find it relevant, see <a href="#sec-news">News</a> for a
+to users that may find it relevant, see <a href="news.html#sec-news">News</a> for a
 description of conditional news.</p>
 <p><a id="sec-guidelines-licensing"></a></p>
 <h2 id="mind-the-license"><a class="header" href="#mind-the-license">Mind the license</a></h2>
@@ -460,11 +464,11 @@ in Nixpkgs.</p>
 
         <script src="../elasticlunr-ef4e11c1.min.js"></script>
         <script src="../mark-09e88c2c.min.js"></script>
-        <script src="../searcher-c2a407aa.js"></script>
+        <script src="../searcher-09f2665d.js"></script>
 
         <script src="../clipboard-1626706a.min.js"></script>
         <script src="../highlight-abc7f01d.js"></script>
-        <script src="../book-a0b12cfe.js"></script>
+        <script src="../book-609e4cb8.js"></script>
 
         <!-- Custom JS scripts -->
 

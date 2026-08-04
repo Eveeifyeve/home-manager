@@ -15,8 +15,8 @@
         <link rel="icon" href="../../favicon-de23e50b.svg">
         <link rel="shortcut icon" href="../../favicon-8114d1fc.png">
         <link rel="stylesheet" href="../../css/variables-8adf115d.css">
-        <link rel="stylesheet" href="../../css/general-2459343d.css">
-        <link rel="stylesheet" href="../../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../../css/general-e96d0476.css">
+        <link rel="stylesheet" href="../../css/chrome-d279d366.css">
         <link rel="stylesheet" href="../../css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
@@ -35,10 +35,10 @@
             const path_to_root = "../../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../searchindex-d677dc02.js";
+            window.path_to_searchindex_js = "../../searchindex-8759301f.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-2bd0036d.js"></script>
+        <script src="../../toc-19723085.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -472,13 +472,13 @@ null or strings concatenated with “\n”</p>
 </ul>
 <h2 id="opt-home.homeDirectory"><a class="header" href="#opt-home.homeDirectory">home.homeDirectory</a></h2>
 <p>The user’s home directory. Must be an absolute path.</p>
+<p>If Home Manager is installed as a NixOS or nix-darwin submodule, it is
+set to <code>osConfig.users.users.&lt;name&gt;.home</code>.</p>
 <p><em>Type:</em>
 absolute path</p>
-<p><em>Default:</em></p>
-<pre><code class="language-nix">"$HOME"   for state version &lt; 20.09,
-undefined for state version ≥ 20.09
-
-</code></pre>
+<p><em>Default:</em>
+<code>$HOME</code>,   for state version &lt; 20.09
+undefined, otherwise.</p>
 <p><em>Example:</em></p>
 <pre><code class="language-nix">"/home/jane.doe"
 </code></pre>
@@ -720,9 +720,9 @@ For example, <a href="#opt-home.pointerCursor.gtk.enable"></a> will generate
 the gtk cursor configuration, but <a href="#opt-gtk.enable"></a> needs
 to be set for it to be applied.</p>
 <p><em>Type:</em>
-null or (submodule)</p>
+submodule</p>
 <p><em>Default:</em></p>
-<pre><code class="language-nix">null
+<pre><code class="language-nix">{ }
 </code></pre>
 <p><em>Declared by:</em></p>
 <ul>
@@ -940,10 +940,12 @@ boolean</p>
 <p><em>Type:</em>
 absolute path <em>(read only)</em></p>
 <p><em>Default:</em></p>
-<pre><code class="language-nix">"${home.homeDirectory}/.nix-profile"  or
-"/etc/profiles/per-user/${home.username}"
-
-</code></pre>
+<ul>
+<li><code>/etc/profiles/per-user/${home.username}</code>, if Home Manager is installed as
+a submodule and <code>home-manager.useUserPackages</code> is enabled, else</li>
+<li><code>${xdg.stateHome}/nix/profile</code>, if <code>nix.useXdg</code> is enabled, else</li>
+<li><code>${home.homeDirectory}/.nix-profile</code>.</li>
+</ul>
 <p><em>Declared by:</em></p>
 <ul>
 <li><a href="https://github.com/nix-community/home-manager/blob/master/modules/home-environment.nix">&lt;home-manager/modules/home-environment.nix&gt;</a></li>
@@ -1182,6 +1184,8 @@ one of “18.09”, “19.03”, “19.09”, “20.03”, “20.09”, “21.03
 </ul>
 <h2 id="opt-home.uid"><a class="header" href="#opt-home.uid">home.uid</a></h2>
 <p>The user’s uid.</p>
+<p>If Home Manager is installed as a NixOS or nix-darwin submodule, it is
+set to <code>osConfig.users.users.&lt;name&gt;.uid</code>.</p>
 <p><em>Type:</em>
 null or (unsigned integer, meaning &gt;=0)</p>
 <p><em>Default:</em></p>
@@ -1196,13 +1200,13 @@ null or (unsigned integer, meaning &gt;=0)</p>
 </ul>
 <h2 id="opt-home.username"><a class="header" href="#opt-home.username">home.username</a></h2>
 <p>The user’s username.</p>
+<p>If Home Manager is installed as a NixOS or nix-darwin submodule, it is
+set to <code>osConfig.users.users.&lt;name&gt;.name</code>.</p>
 <p><em>Type:</em>
-string</p>
-<p><em>Default:</em></p>
-<pre><code class="language-nix">"$USER"   for state version &lt; 20.09,
-undefined for state version ≥ 20.09
-
-</code></pre>
+non-empty string</p>
+<p><em>Default:</em>
+<code>$USER</code>,   for state version &lt; 20.09,
+undefined, otherwise.</p>
 <p><em>Example:</em></p>
 <pre><code class="language-nix">"jane.doe"
 </code></pre>
@@ -1255,11 +1259,11 @@ undefined for state version ≥ 20.09
 
         <script src="../../elasticlunr-ef4e11c1.min.js"></script>
         <script src="../../mark-09e88c2c.min.js"></script>
-        <script src="../../searcher-c2a407aa.js"></script>
+        <script src="../../searcher-09f2665d.js"></script>
 
         <script src="../../clipboard-1626706a.min.js"></script>
         <script src="../../highlight-abc7f01d.js"></script>
-        <script src="../../book-a0b12cfe.js"></script>
+        <script src="../../book-609e4cb8.js"></script>
 
         <!-- Custom JS scripts -->
 
